@@ -2,7 +2,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const ObjectId = mongoose.ObjectId;
 require('dotenv').config();
-mongoose.connect(process.env.mongodburi);
+mongoose.connect(process.env.MONGO_URI);
+console.log("connected to");
+
+
 
 const userSchema = new Schema({
     email: {type: String , unique: true},
@@ -33,16 +36,16 @@ const purchaseSchema = new Schema({
 });
 
 
-const userModel = mongoose.Model("user",  userSchema);
-const adminModel = mongoose.Model("admin",  adminSchema);
-const courseModel = mongoose.Model("course",  courseSchema);
-const purchaseModel = mongoose.Model("purchase",  purchaseSchema);
+const userModel = mongoose.model("user",  userSchema);
+const adminModel = mongoose.model("admin",  adminSchema);
+const courseModel = mongoose.model("course",  courseSchema);
+const purchaseModel = mongoose.model("purchase",  purchaseSchema);
 
 
 module.exports = {
-    userModel,
-    adminModel,
-    courseModel,
-    purchaseModel
+    userModel:  userModel,
+    adminModel:  adminModel,
+    courseModel: courseModel,
+    purchaseModel: purchaseModel
 }
 
